@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+    <!-- 数据库驱动包路径 -->
+    <context id="context1" targetRuntime="MyBatis3">
+        <!-- 运行环境配置 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!-- 生成注释配置 -->
+        <commentGenerator type="generator.plugin.MyCommentGenerator">
+            <!-- 是否取消注释 -->
+            <property name="suppressAllComments" value="false"/>
+            <!-- 数据库注释支持 -->
+            <property name="addRemarkComments" value="true"/>
+            <!-- 时间格式设置 -->
+            <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+        </commentGenerator>
+        <!-- 连接数据库 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test?characterEncoding=utf8"
+                        userId="test"
+                        password="1234">
+        </jdbcConnection>
+        <!-- 数值类型数据是否全部使用BigDecimal类型 -->
+        <!-- 生成实体类 -->
+        <javaModelGenerator targetPackage="com.demo.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成xml映射文件 -->
+        <sqlMapGenerator targetPackage="com.demo.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="isMergeable" value="false"/>
+        </sqlMapGenerator>
+        <!-- 生成dao类 -->
+        <javaClientGenerator targetPackage="com.demo.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 要生成的表 -->
+        <table schema="" tableName="t_dataset"
+               domainObjectName="Dataset">
+            <!-- 主键生成方式 -->
+<!--            <generatedKey column="u_id" sqlStatement="select seq_t_user.nextval from dual" identity="true" />-->
+        </table>
+
+    </context>
+</generatorConfiguration>
